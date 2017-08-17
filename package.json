@@ -1,0 +1,23 @@
+{
+  "name": "speakers-api",
+  "version": "0.0.1",
+  "description": "Speakers REST-API",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "test",
+    "dev": "nodemon src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Nadrajkowski/speakers-api.git"
+  },
+  "author": "Kasper Nadrajkowski",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nadrajkowski/speakers-api/issues"
+  },
+  "homepage": "https://github.com/Nadrajkowski/speakers-api#readme",
+  "dependencies": {
+    "express": "^4.15.4"
+  }
+}

@@ -1,8 +1,11 @@
+var id = 0;
+
 var store = {
     items: [],
 
-    addItem: function(item){
-        this.items.push(item);
+    addItem: function(name){
+        this.items.push({id: id, name:name});
+        id++;
     },
 
     getItems: function(){

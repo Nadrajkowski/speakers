@@ -5,13 +5,14 @@ import './ListItem.css';
 class ListItem extends Component {
 
 	render() {
+
 		const { id, name } = this.props;
-  	return (
+  		return (
     		<div className="ListItem">
-    			<h4 class="ListItem" >{name}</h4>
-    			<a>{id}</a>
+    			<span class="name" >{name}</span>
+    			<a class="id">{id}</a>
     		</div>//class="ListItem"
-  	);//return
+  		);//return
 	}//render
 
 }//class

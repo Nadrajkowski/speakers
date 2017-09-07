@@ -14,7 +14,8 @@ class List extends Component {
         this.handleInputChange = this.handleInputChange.bind(this);
         this.state = {
             items: [],
-            inputValue: ''
+            inputValue: '',
+            apiPath: 'http://localhost:2000/'
         }
     }
 
@@ -23,7 +24,7 @@ class List extends Component {
     }
 
     getItems(){
-        axios.get('http://localhost:3000/items')
+        axios.get(this.state.apiPath+'items')
         .then(response => {
             this.setState({items: response.data});
         })
@@ -34,7 +35,7 @@ class List extends Component {
     }
 
     addItem(){
-        axios.get('http://localhost:3000/items/add/'+this.state.inputValue)
+        axios.get(this.state.apiPath+'items/add/'+this.state.inputValue)
         .then(response => {
             this.getItems();
         })
@@ -51,19 +52,19 @@ class List extends Component {
     render() {
 
         var a = this.state.items;
-        //a.push({id: 1, name: 'kasper'});
-        //a.push({id: 2, name: 'marta'});
 
         const listItems = a.map((item) => {
-            return <ListItem key={item.name} {...item}/>;
+            return <ListItem key={item.id} {...item}/>;
         });
 
         return (
             <div className="List">
-                <h1 class="List">List</h1>
-                {listItems}
-                <input value={this.state.inputValue} onChange={this.handleInputChange} type="text"/>
-                <button onClick={this.addItem}>add</button>
+                <div className="material div">
+                    <h2>List</h2>
+                    {listItems}
+                </div>
+                <input className="material text-input" value={this.state.inputValue} onChange={this.handleInputChange} type="text"/>
+                <div className="material btn" onClick={this.addItem}>Add item</div>
                 <br/>
                 <br/>
                 <a href="/thread">Thread</a>

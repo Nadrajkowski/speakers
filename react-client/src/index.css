@@ -1,5 +1,81 @@
 body {
+  background-color: #f6f6f6;
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: helvetica;
+}
+
+th {
+  color: #3744a0;
+}
+
+.material {
+  border-radius: 3px;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.26);
+  margin: 5px;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
+
+.material.btn {
+  background-color: #3744a0;
+  color: #f6f6f6;
+  display: inline-block;
+  font-size: 0.9em;
+  line-height: 32px;
+  position: relative;
+  text-align: center;
+  trasition: all .3s;
+  width: 120px;
+  height: 32px;
+}
+
+.material.btn:hover {
+  background-color: #313d90;
+}
+
+.material.btn.red {
+  background-color: #cc0033;
+}
+
+
+.material.btn.red:hover {
+  background-color: #b7002d;
+}
+
+.material.div {
+  margin: 10px;
+  padding: 10px;
+}
+
+.material.div.link {
+  transition: all .3s;
+}
+
+.material.div.link:hover{
+  background-color: #b7002d;
+  color: #f6f6f6;
+}
+
+.material.text-input {
+  border: none;
+  display: inline-block;
+  font-size: 0.9em;
+  line-height: 32px;
+  padding-left: 5px;
+  position: relative;
+  trasition: border-bottom 1s ease;
+  width: 120px;
+  height: 32px;
+}
+
+.material.text-input:focus {
+  border-bottom: 3px solid #313d90;
+  border-radius: 3px 3px 0 0;
+  height: 29px;
 }

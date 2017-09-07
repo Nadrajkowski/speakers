@@ -4,15 +4,27 @@ import './ListItem.css';
 
 class ListItem extends Component {
 
+    constructor(props){
+        super(props);
+		this.goToPost = this.goToPost.bind(this);
+		this.state = {};
+    }
+
+    goToPost(){
+    	document.location = '/thread/'+this.props.id;
+	}
+
 	render() {
 
-		const { id, name } = this.props;
+		const { id, name, publisher, textPreview } = this.props;
   		return (
-    		<div className="ListItem">
-    			<span class="name" >{name}</span>
-    			<a class="id">{id}</a>
-    		</div>//class="ListItem"
+			<div className="material div link" onClick={this.goToPost}>
+				<h3>{name}</h3>
+				<span>Publisher: {publisher}</span>
+				<p>{textPreview}</p>
+			</div>
   		);//return
+
 	}//render
 
 }//class

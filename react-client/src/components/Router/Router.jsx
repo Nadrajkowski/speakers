@@ -11,6 +11,7 @@ class Router extends Component {
         <Switch>
         	<Route exact path="/" component={List}/>
         	<Route exact path="/thread" component={Thread}/>
+            <Route path="/thread/:id" component={Thread}/>
         </Switch>
       </div>
     );

@@ -8,6 +8,7 @@
 
 .header-text {
 	color: #f6f6f6;
+	cursor: pointer;
 	padding-left: 10px;
 	padding-top: 20px;
 }

@@ -9,8 +9,8 @@ class List extends Component {
     constructor(props){
         super(props);
 
-        this.getItems = this.getItems.bind(this);
         this.addItem = this.addItem.bind(this);
+        this.getItems = this.getItems.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.state = {
             items: [],
@@ -19,10 +19,16 @@ class List extends Component {
         }
     }
 
+    addItem() {
+        axios.get(this.state.apiPath + 'items/add/' + this.state.inputValue)
+            .then(this.getItems())
+            .catch(err => {
+                alert(err);
+            })
+    }
     componentDidMount(){
         this.getItems();
     }
-
     getItems(){
         axios.get(this.state.apiPath+'items')
         .then(response => {
@@ -30,28 +36,20 @@ class List extends Component {
         })
         .catch(err => {
             alert(err.message);
-            return;
+
         })
     }
 
-    addItem(){
-        axios.get(this.state.apiPath+'items/add/'+this.state.inputValue)
-        .then(response => {
-            this.getItems();
-        })
-        .catch(err => {
-            alert(err);
-        })
+    static goToNewPost() {
+        document.location = '/newPost';
     }
-
     handleInputChange(event){
         this.setState({inputValue:event.target.value});
     }
 
-
     render() {
 
-        var a = this.state.items;
+        let a = this.state.items;
 
         const listItems = a.map((item) => {
             return <ListItem key={item.id} {...item}/>;
@@ -60,14 +58,17 @@ class List extends Component {
         return (
             <div className="List">
                 <div className="material div">
-                    <h2>List</h2>
+                    <h2 className="blue">
+                        Welcome to Speakers
+                        <div className="material btn float-r" onClick={List.goToNewPost}>New Post</div>
+                    </h2>
+                    <h3 className="blue">The place for the most accurate translations</h3>
                     {listItems}
                 </div>
                 <input className="material text-input" value={this.state.inputValue} onChange={this.handleInputChange} type="text"/>
                 <div className="material btn" onClick={this.addItem}>Add item</div>
                 <br/>
                 <br/>
-                <a href="/thread">Thread</a>
             </div>
         );
     }

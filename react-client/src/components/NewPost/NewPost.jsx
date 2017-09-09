@@ -9,13 +9,32 @@ class NewPost extends Component {
         //this.goToPost = this.goToPost.bind(this);
         this.handleTitleInputChange = this.handleTitleInputChange.bind(this);
         this.state = {
+            context: '',
+            from: '',
+            text: '',
             title: '',
-
+            to: ''
         };
+    }
+
+    handleContextInputChange(event) {
+        this.setState({context: event.target.value});
+    }
+
+    handleFromInputChange(event) {
+        this.setState({from: event.target.value});
+    }
+
+    handleTextInputChange(event) {
+        this.setState({text: event.target.value});
     }
 
     handleTitleInputChange(event) {
         this.setState({title: event.target.value});
+    }
+
+    handleToInputChange(event) {
+        this.setState({to: event.target.value});
     }
 
     render() {
@@ -47,8 +66,8 @@ class NewPost extends Component {
                     <br/>
                     <input
                         className="material text-input lg"
-                        value={this.state.inputValue}
-                        onChange={this.handleInputChange}
+                        value={this.state.title}
+                        onChange={this.handleTitleInputChange}
                         type="text"
                         placeholder="Title"
                     />
@@ -58,8 +77,8 @@ class NewPost extends Component {
                     <br/>
                     <textarea
                         className="material textarea"
-                        value={this.state.inputValue}
-                        onChange={this.handleInputChange}
+                        value={this.state.text}
+                        onChange={this.handleTextInputChange}
                         type="text"
                         placeholder="Text to be traslated"
                     />
@@ -69,8 +88,8 @@ class NewPost extends Component {
                     <br/>
                     <textarea
                         className="material textarea"
-                        value={this.state.inputValue}
-                        onChange={this.handleInputChange}
+                        value={this.state.context}
+                        onChange={this.handleContextInputChange}
                         type="text"
                         placeholder="Provide some context for the translation"
                     />

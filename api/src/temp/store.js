@@ -3,13 +3,15 @@ var id = 0;
 var store = {
     items: [],
 
-    addItem: function(name){
+    addItem: function (body) {
         this.items.push({
+            context: body.context,
+            from: body.from,
             id: id,
-            name:name,
-            publisher: 'Kasper',
-            text: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
-            textPreview: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed ...'
+            poster: body.poster,
+            text: body.text,
+            title: body.title,
+            to: body.to
         });
         id++;
     },
@@ -20,9 +22,9 @@ var store = {
 
     getItem: function (id) {
         for(var i=0; i <=this.items.length; i++){
-            if(this.items[i].id == id) return this.items[i];
+            if (this.items[i].id === id) return this.items[i];
         }
     }
-}
+};
 
 module.exports = store;

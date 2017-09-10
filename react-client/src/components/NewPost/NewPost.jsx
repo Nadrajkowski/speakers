@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, {Component} from 'react';
 import './NewPost.css';
 
@@ -6,11 +7,16 @@ class NewPost extends Component {
 
     constructor(props) {
         super(props);
-        //this.goToPost = this.goToPost.bind(this);
+        this.handleContextInputChange = this.handleContextInputChange.bind(this);
+        this.handleFromInputChange = this.handleFromInputChange.bind(this);
+        this.handleTextInputChange = this.handleTextInputChange.bind(this);
         this.handleTitleInputChange = this.handleTitleInputChange.bind(this);
+        this.handleToInputChange = this.handleToInputChange.bind(this);
+        this.post = this.post.bind(this);
         this.state = {
             context: '',
             from: '',
+            poster: 'Kasper',
             text: '',
             title: '',
             to: ''
@@ -37,9 +43,28 @@ class NewPost extends Component {
         this.setState({to: event.target.value});
     }
 
+    post() {
+        console.log(this.state);
+        const {context, from, text, title, to} = this.state;
+        if (context === '' || from === '' || text === '' || title === '' || to === '') {
+            alert('Please fill out all fields');
+            return;
+        }
+        axios({
+            url: 'http://localhost:2000/items',
+            method: 'post',
+            data: this.state
+        })
+            .then(response => {
+                console.log(response)
+            })
+            .catch(err => {
+                alert(err)
+            });
+    }
+
     render() {
 
-        const {} = this.props;
         return (
             <div className="material div">
                 <h2 className="blue">Create New Post</h2>
@@ -81,6 +106,7 @@ class NewPost extends Component {
                         onChange={this.handleTextInputChange}
                         type="text"
                         placeholder="Text to be traslated"
+                        wrap="soft"
                     />
                 </div>
                 <div className="input-group">
@@ -94,7 +120,7 @@ class NewPost extends Component {
                         placeholder="Provide some context for the translation"
                     />
                 </div>
-                <div className="material btn">Post</div>
+                <div className="material btn" onClick={this.post}>Post</div>
             </div>
         );//return
 

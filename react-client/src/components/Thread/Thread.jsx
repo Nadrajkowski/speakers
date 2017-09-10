@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './Thread.css';
 
 
@@ -10,7 +10,7 @@ class Thread extends Component {
         this.state = {
             item: {},
             apiPath: 'http://localhost:2000/'
-        }
+        };
         this.getThread = this.getThread.bind(this);
     }
 
@@ -19,22 +19,24 @@ class Thread extends Component {
     }
 
     getThread(){
-        var id = this.props.location.pathname.split('/')[2];
+        const id = this.props.location.pathname.split('/')[2];
         axios.get(this.state.apiPath+'items/'+id)
             .then(response => {
                 this.setState({item: response.data});
             })
             .catch(err => {
                 alert(err.message);
-                return;
+
             })
     }
 
   render() {
-        const {text, publisher, id, name} = this.state.item;
+      const {text, publisher, name} = this.state.item;
     return (
       <div className="Thread">
-      	<h1 class="Thread" >{name}</h1>
+          <h1>{name}</h1>
+          <span>Publisher: {publisher}</span>
+          <br/>
       	<p>{text}</p>
       </div>
     );

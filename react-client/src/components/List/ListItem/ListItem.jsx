@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './ListItem.css';
+import './ListItem';
 
 
 class ListItem extends Component {
@@ -16,12 +16,16 @@ class ListItem extends Component {
 
 	render() {
 
-        const {name, publisher, textPreview} = this.props;
+        const {from, poster, title, to} = this.props;
   		return (
 			<div className="material div link" onClick={this.goToPost}>
-				<h3 className="blue">{name}</h3>
-				<span>Publisher: {publisher}</span>
-				<p>{textPreview}</p>
+				<h3>{title}</h3>
+				<span>posted by: {poster}</span>
+				<br/><br/>
+				<div className="material language">{from}</div>
+				<i className="arrow right blue"></i>
+				<i className="arrow right blue"></i>
+				<div className="material language">{to}</div>
 			</div>
   		);//return
 

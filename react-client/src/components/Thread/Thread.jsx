@@ -31,13 +31,18 @@ class Thread extends Component {
     }
 
   render() {
-      const {text, publisher, name} = this.state.item;
+      const {context, from, poster, text, title, to} = this.state.item;
     return (
       <div className="Thread">
-          <h1>{name}</h1>
-          <span>Publisher: {publisher}</span>
+          <h1>{title}</h1>
+          <div className="material language">{from}</div>
+          <i className="arrow right blue"></i>
+          <i className="arrow right blue"></i>
+          <div className="material language">{to}</div>
           <br/>
-      	<p>{text}</p>
+          <span>posted by: {poster}</span>
+          <p className="material">{text}</p>
+          <p className="material">{context}</p>
       </div>
     );
   }

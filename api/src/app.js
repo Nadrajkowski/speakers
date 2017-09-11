@@ -74,8 +74,8 @@ app.get('/items/:id', function(req, res){
 app.post('/items', function (req, res) {
     console.log(req.path);
     console.log(req.body);
-    store.addItem(req.body);
-    res.status(201).send('Post Created');
+    var id = store.addItem(req.body);
+    res.status(201).json({msg: 'Post created', id: id});
 });
 
 

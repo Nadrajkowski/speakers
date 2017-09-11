@@ -14,6 +14,7 @@ var store = {
             to: body.to
         });
         id++;
+        return id - 1;
     },
 
     getItems: function(){
@@ -22,7 +23,7 @@ var store = {
 
     getItem: function (id) {
         for(var i=0; i <=this.items.length; i++){
-            if (this.items[i].id === id) return this.items[i];
+            if (this.items[i].id == id) return this.items[i];
         }
     }
 };

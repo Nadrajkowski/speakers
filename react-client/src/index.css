@@ -62,7 +62,7 @@ button:focus {
   padding: 10px;
 }
 .material.div.link {
-  transition: all .3s;
+  transition: all .2s;
 }
 .material.div.link:hover{
   background-color: #b7002d;

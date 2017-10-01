@@ -11,7 +11,7 @@ class ListItem extends Component {
     }
 
     goToPost(){
-    	document.location = '/thread/'+this.props.id;
+        document.location = '/thread/' + this.props._id;
 	}
 
 	render() {

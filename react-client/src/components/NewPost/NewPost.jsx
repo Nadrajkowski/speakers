@@ -56,7 +56,7 @@ class NewPost extends Component {
             data: this.state
         })
             .then(response => {
-                document.location = '/thread/' + response.data.id;
+                document.location = '/thread/' + response.data._id;
             })
             .catch(err => {
                 alert(err)

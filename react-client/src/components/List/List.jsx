@@ -8,8 +8,6 @@ class List extends Component {
 
     constructor(props){
         super(props);
-
-        this.addItem = this.addItem.bind(this);
         this.getItems = this.getItems.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.state = {
@@ -17,14 +15,6 @@ class List extends Component {
             inputValue: '',
             apiPath: 'http://localhost:2000/'
         }
-    }
-
-    addItem() {
-        axios.get(this.state.apiPath + 'items/add/' + this.state.inputValue)
-            .then(this.getItems())
-            .catch(err => {
-                alert(err);
-            })
     }
     componentDidMount(){
         this.getItems();
@@ -52,7 +42,7 @@ class List extends Component {
         let a = this.state.items;
 
         const listItems = a.map((item) => {
-            return <ListItem key={item.id} {...item}/>;
+            return <ListItem key={item._id} {...item}/>;
         });
 
         return (

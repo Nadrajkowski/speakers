@@ -1,0 +1,23 @@
+{
+  "name": "speakers",
+  "version": "0.0.1",
+  "description": "Speakers",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "test",
+    "api-dev": "cd api && npm run dev",
+    "client-dev": "cd react-client && npm run start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Nadrajkowski/speakers.git"
+  },
+  "author": "Kasper Nadrajkowski",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nadrajkowski/speakers/issues"
+  },
+  "homepage": "https://github.com/Nadrajkowski/speakers/#readme",
+  "dependencies": {
+  }
+}

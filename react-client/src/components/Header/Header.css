@@ -1,5 +1,5 @@
 .header {
-	background-color: #cc0033;
+	background-color: var(--main-accent-color);
 	border-radius: 0;
 	width: 100%;
 	height: 130px;
@@ -7,7 +7,7 @@
 }
 
 .header-text {
-	color: #f6f6f6;
+	color: var(--main-accent-color-inside);
 	cursor: pointer;
 	padding-left: 10px;
 	padding-top: 20px;

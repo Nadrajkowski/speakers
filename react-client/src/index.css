@@ -1,5 +1,15 @@
+:root {
+    --main-accent-color: #333a56;
+    --main-accent-color-dark: #222845;
+    --main-accent-color-inside: #e8e8e8;
+    --main-bg-color: #f4f4f4;
+    --main-bg-color-inside: #333a56;
+    --secondary-accent-color: #52658f;
+    --secondary-accent-color-dark: #30436d;
+    --secondary-accent-color-inside: #e8e8e8;
+}
 body {
-  background-color: #f6f6f6;
+    background-color: var(--main-bg-color);
   margin: 0;
   padding: 0;
   font-family: sans-serif;
@@ -17,28 +27,27 @@ textarea:focus,
 button:focus {
   outline: none;
 }
-.blue {
-  color: #3744a0;
-}
 .float-r {
   float: right;
 }
 .input-descriptor {
-  color: #3744a0;
+    color: var(--main-bg-color-inside);
   padding: 0 10px 0 10px
 }
 .input-group {
   margin: 10px;
 }
 .material {
+    background-color: var(--main-bg-color);
   border-radius: 3px;
   box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.26);
+    color: var(--main-bg-color-inside);
   margin: 5px;
 }
 .material.btn {
-  background-color: #3744a0;
+    background-color: var(--secondary-accent-color);
   cursor: pointer;
-  color: #f6f6f6;
+    color: var(--secondary-accent-color-inside);
   display: inline-block;
   font-size: 0.9em;
   line-height: 32px;
@@ -49,29 +58,24 @@ button:focus {
   height: 32px;
 }
 .material.btn:hover {
-  background-color: #313d90;
-}
-.material.btn.red {
-  background-color: #cc0033;
-}
-.material.btn.red:hover {
-  background-color: #b7002d;
+    background-color: var(--secondary-accent-color-dark);
 }
 .material.div {
   margin: 10px;
   padding: 10px;
 }
 .material.div.link {
+    background-color: var(--main-bg-color);
   transition: all .2s;
 }
 .material.div.link:hover{
-  background-color: #b7002d;
-  color: #f6f6f6;
+    background-color: var(--main-accent-color);
+    color: var(--main-accent-color-inside);
 }
 .material.language {
-  background-color: #f6f6f6;
+    background-color: var(--secondary-accent-color);
   cursor: hand;
-  color: #3744a0;
+    color: var(--secondary-accent-color-inside);
   display: inline-block;
   font-size: 0.9em;
   line-height: 32px;
@@ -82,7 +86,9 @@ button:focus {
   height: 32px;
 }
 .material.text-input {
+    background-color: var(--main-bg-color);
   border: none;
+    color: var(--main-bg-color-inside);
   display: inline-block;
   font-size: 0.9em;
   line-height: 32px;
@@ -92,7 +98,7 @@ button:focus {
   height: 32px;
 }
 .material.text-input:focus {
-  outline: 2px dashed #313d90;
+    outline: 2px dashed var(--secondary-accent-color);
 }
 .material.text-input.lg {
   transition: width .5s ease;
@@ -111,7 +117,7 @@ button:focus {
   height: 130px;
 }
 .material.textarea:focus {
-  outline: 2px dashed #313d90;
+    outline: 2px dashed var(--secondary-accent-color);
 }
 
 /* Arrows from https://www.w3schools.com/howto/howto_css_arrows.asp */

@@ -1,8 +1,12 @@
 "use strict";
 
+//npm
 var express = require('express');
 var cors = require('cors');
 var bp = require('body-parser');
+
+//own
+var urlIdParser = require('./utils/urlIdParser');
 
 var app = express();
 app.use(cors());
@@ -33,7 +37,7 @@ function prefillDB(){
             text: 'Hi, please translate this for me',
             title: 'Birne',
             to: 'polish'
-        },
+        }/*,
         {
             context: 'this is my context',
             from: 'german',
@@ -57,10 +61,13 @@ function prefillDB(){
             text: 'Hi, please translate this for me',
             title: 'Zitrone',
             to: 'polish'
-        }
+        }*/
 
     ];
     dummys.forEach(function (dummy) {
+        //var urlId = urlIdParser.getUrlId(dummy.title, Post);
+        dummy.url_id = urlId;
+        console.log(dummy.url_id);
         new Post(dummy).save(function (err, newPost) {
             if (err) return console.log(err);
             else console.log(newPost.title + ' saved');
@@ -71,7 +78,6 @@ function prefillDB(){
 app.get('/', function (req, res) {
    res.send('It Works!');
 });
-
 app.get('/items', function (req, res) {
     console.log(req.path);
     Post.find(function (err, posts) {
@@ -79,7 +85,6 @@ app.get('/items', function (req, res) {
         else res.status(200).send(posts);
     })
 });
-
 app.get('/items/:id', function(req, res){
     console.log(req.path);
     Post.findById(req.params.id, function (err, post) {
@@ -87,8 +92,14 @@ app.get('/items/:id', function(req, res){
         else res.status(200).json(post);
     });
 });
+app.get('/items/byUrlId/:id', function (req, res) {
+    console.log(req.path);
+    Post.findOne({url_id: req.params.id}, function (err, post) {
+        if (err) res.status(404).send(err);
+        else res.status(200).json(post);
+    });
+});
 app.post('/items', function (req, res) {
-
     new Post(req.body).save(function (err, newPost) {
         if (err) res.status(406).send(err);
         else res.status(201).json(newPost);
@@ -96,7 +107,7 @@ app.post('/items', function (req, res) {
 });
 
 
-var PORT = (process.env.PORT) ? process.env.PORT : 2000;
+var PORT = process.env.PORT || 2000;
 
 app.listen(PORT, function () {
     console.log('app is listening on port ' + PORT);

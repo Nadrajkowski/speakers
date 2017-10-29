@@ -2,6 +2,7 @@ import axios from 'axios';
 import moment from 'moment';
 import React, {Component} from 'react';
 import './Thread.css';
+import Answer from './Answer/Answer';
 
 
 class Thread extends Component {
@@ -10,12 +11,13 @@ class Thread extends Component {
         super(props);
         this.state = {
             item: {},
+            answersElements: [],
             apiPath: 'http://localhost:2001/'
         };
         this.getThread = this.getThread.bind(this);
     }
 
-    componentWillMount(){
+    componentDidMount() {
         this.getThread();
     }
 
@@ -23,7 +25,12 @@ class Thread extends Component {
         const id = this.props.location.pathname.split('/')[2];
         axios.get(this.state.apiPath+'items/'+id)
             .then(response => {
-                this.setState({item: response.data});
+                this.setState({
+                    item: response.data,
+                    answersElements: response.data.answers.map((answer) => {
+                        return <Answer key={answer._id} {...answer}/>;
+                    })
+                });
             })
             .catch(err => {
                 alert(err.message);
@@ -32,6 +39,8 @@ class Thread extends Component {
     }
 
   render() {
+
+      console.log(this.state.answersElements);
       const {
           context,
           createdAt,
@@ -42,6 +51,7 @@ class Thread extends Component {
           to,
           updatedAt
       } = this.state.item;
+
       const updatedAtAsReadableString = moment(updatedAt).format('DD. MMM YYYY');
       const createdAtAsReadableString = moment(createdAt).format('DD. MMM YYYY');
     return (
@@ -61,6 +71,8 @@ class Thread extends Component {
               <span>last updated: {updatedAtAsReadableString}, </span>
               <span>posted: {createdAtAsReadableString}</span>
           </div>
+          <h3>Answers</h3>
+          {this.state.answersElements}
       </div>
     );
   }

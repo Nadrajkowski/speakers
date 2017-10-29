@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 var answerSchema = mongoose.Schema(
     {
-        body: {type: String, required: true}
+        text: {type: String, required: true}
     },
     {
         timestamps: true

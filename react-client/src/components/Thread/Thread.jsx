@@ -1,4 +1,5 @@
 import axios from 'axios';
+import moment from 'moment';
 import React, {Component} from 'react';
 import './Thread.css';
 
@@ -9,7 +10,7 @@ class Thread extends Component {
         super(props);
         this.state = {
             item: {},
-            apiPath: 'http://localhost:2000/'
+            apiPath: 'http://localhost:2001/'
         };
         this.getThread = this.getThread.bind(this);
     }
@@ -31,7 +32,18 @@ class Thread extends Component {
     }
 
   render() {
-      const {context, from, poster, text, title, to} = this.state.item;
+      const {
+          context,
+          createdAt,
+          from,
+          poster,
+          text,
+          title,
+          to,
+          updatedAt
+      } = this.state.item;
+      const updatedAtAsReadableString = moment(updatedAt).format('DD. MMM YYYY');
+      const createdAtAsReadableString = moment(createdAt).format('DD. MMM YYYY');
     return (
       <div className="Thread">
           <h1>{title}</h1>
@@ -40,9 +52,15 @@ class Thread extends Component {
           <i className="arrow right blue"></i>
           <div className="material language">{to}</div>
           <br/>
-          <span>posted by: {poster}</span>
-          <p className="material">{text}</p>
-          <p className="material">{context}</p>
+          <div className="material">
+              <p className="text"> {text}</p>
+              <p className="text">{context}</p>
+          </div>
+          <div className="meta-info">
+              <span>posted by: {poster}, </span>
+              <span>last updated: {updatedAtAsReadableString}, </span>
+              <span>posted: {createdAtAsReadableString}</span>
+          </div>
       </div>
     );
   }

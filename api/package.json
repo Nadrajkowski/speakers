@@ -5,8 +5,9 @@
   "main": "src/app.js",
   "scripts": {
     "test": "test",
-    "dev": "npm run build && node build/main.bundle.js",
-    "build": "npx webpack --progress"
+    "dev": "npm run build && NODE_ENV=dev node build/main.bundle.js",
+    "build": "npx webpack --progress",
+    "production": "npm run build && node build/main.bundle.js"
   },
   "author": "Kasper Nadrajkowski",
   "license": "ISC",

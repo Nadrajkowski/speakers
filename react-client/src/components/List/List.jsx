@@ -9,11 +9,9 @@ class List extends Component {
     constructor(props){
         super(props);
         this.getItems = this.getItems.bind(this);
-        this.handleInputChange = this.handleInputChange.bind(this);
         this.state = {
             items: [],
-            inputValue: '',
-            apiPath: 'http://localhost:2000/'
+            apiPath: 'http://localhost:2001/'
         }
     }
     componentDidMount(){
@@ -33,15 +31,10 @@ class List extends Component {
     static goToNewPost() {
         document.location = '/newPost';
     }
-    handleInputChange(event){
-        this.setState({inputValue:event.target.value});
-    }
 
     render() {
 
-        let a = this.state.items;
-
-        const listItems = a.map((item) => {
+        const listItems = this.state.items.map((item) => {
             return <ListItem key={item._id} {...item}/>;
         });
 
@@ -55,10 +48,6 @@ class List extends Component {
                     <h3 className="blue">The place for the most accurate translations</h3>
                     {listItems}
                 </div>
-                <input className="material text-input" value={this.state.inputValue} onChange={this.handleInputChange} type="text"/>
-                <div className="material btn" onClick={this.addItem}>Add item</div>
-                <br/>
-                <br/>
             </div>
         );
     }

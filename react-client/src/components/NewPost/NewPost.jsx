@@ -51,7 +51,7 @@ class NewPost extends Component {
             return;
         }
         axios({
-            url: 'http://localhost:2000/items',
+            url: 'http://localhost:2001/items',
             method: 'post',
             data: this.state
         })

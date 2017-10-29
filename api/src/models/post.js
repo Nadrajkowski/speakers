@@ -16,5 +16,4 @@ var postSchema = mongoose.Schema(
         timestamps: true
     }
 );
-
 module.exports = postSchema;

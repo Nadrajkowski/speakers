@@ -144,5 +144,5 @@ button:focus {
   -webkit-transform: rotate(45deg);
 }
 .arrow.blue {
-  border-color: #3744a0;
+    border-color: var(--secondary-accent-color);
 }

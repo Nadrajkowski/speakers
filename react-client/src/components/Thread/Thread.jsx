@@ -7,18 +7,48 @@ import Answer from './Answer/Answer';
 
 class Thread extends Component {
 
+    // React methods
     constructor(props){
         super(props);
         this.state = {
             item: {},
             answersElements: [],
-            apiPath: 'http://localhost:2001/'
+            apiPath: 'http://localhost:2001/',
+            newAnswer: '',
+            newAnswerUser: ''
         };
+        this.addAnswer = this.addAnswer.bind(this);
         this.getThread = this.getThread.bind(this);
+        this.handleNewAnswerInputChange = this.handleNewAnswerInputChange.bind(this);
+        this.handleNewAnswerUserInputChange = this.handleNewAnswerUserInputChange.bind(this);
     }
 
     componentDidMount() {
         this.getThread();
+    }
+
+    // own methods
+    addAnswer() {
+        const {newAnswer, newAnswerUser} = this.state;
+        if (newAnswer === '' || newAnswerUser === '') {
+            alert('Please fill out all fields');
+            return;
+        }
+        axios({
+            url: 'http://localhost:2001/items/answer',
+            method: 'put',
+            data: {
+                id: this.state.item._id,
+                text: newAnswer,
+                poster: newAnswerUser
+            }
+        })
+            .then(response => {
+                this.getThread()
+            })
+            .catch(err => {
+                alert(err)
+            });
     }
 
     getThread(){
@@ -36,6 +66,14 @@ class Thread extends Component {
                 alert(err.message);
 
             })
+    }
+
+    handleNewAnswerInputChange(event) {
+        this.setState({newAnswer: event.target.value});
+    }
+
+    handleNewAnswerUserInputChange(event) {
+        this.setState({newAnswerUser: event.target.value});
     }
 
   render() {
@@ -71,8 +109,37 @@ class Thread extends Component {
               <span>last updated: {updatedAtAsReadableString}, </span>
               <span>posted: {createdAtAsReadableString}</span>
           </div>
-          <h3>Answers</h3>
+          <h3>Answers:</h3>
           {this.state.answersElements}
+          <h3>Add a new Answer:</h3>
+          <div className="input-group">
+              <span className="input-descriptor">Answer:</span>
+              <br/>
+              <textarea
+                  className="material textarea"
+                  value={this.state.newAnswer}
+                  onChange={this.handleNewAnswerInputChange}
+                  type="text"
+                  placeholder="your answer ..."
+              />
+          </div>
+          <div className="input-group">
+              <span className="input-descriptor">Username:</span>
+              <br/>
+              <input
+                  className="material text-input lg"
+                  value={this.state.newAnswerUser}
+                  onChange={this.handleNewAnswerUserInputChange}
+                  type="text"
+                  placeholder="your username"
+              />
+              <br/>
+              <div
+                  className="material btn"
+                  onClick={this.addAnswer}
+              >Add Answer
+              </div>
+          </div>
       </div>
     );
   }

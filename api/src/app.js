@@ -116,7 +116,8 @@ app.put('/items/answer', function (req, res) {
         {
             $push: { // use push method
                 answers: { // array pushed to
-                    text: req.body.text // item to be pushed
+                    text: req.body.text, // item to be pushed
+                    poster: req.body.poster
                 }
             }
         },

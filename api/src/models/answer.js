@@ -2,7 +2,8 @@ var mongoose = require('mongoose');
 
 var answerSchema = mongoose.Schema(
     {
-        text: {type: String, required: true}
+        text: {type: String, required: true},
+        poster: {type: String, required: true}
     },
     {
         timestamps: true

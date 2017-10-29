@@ -12,6 +12,7 @@ class Answer extends Component {
     render() {
         const {
             text,
+            poster,
             createdAt,
             updatedAt
         } = this.props;
@@ -21,6 +22,7 @@ class Answer extends Component {
             <div>
                 <p className="material">{text}</p>
                 <div className="meta-info">
+                    <span>poster: {poster}, </span>
                     <span>last updated: {updatedAtAsReadableString}, </span>
                     <span>posted: {createdAtAsReadableString}</span>
                 </div>

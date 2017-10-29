@@ -66,8 +66,8 @@ function prefillDB(){
     ];
     dummys.forEach(function (dummy) {
         //var urlId = urlIdParser.getUrlId(dummy.title, Post);
-        dummy.url_id = urlId;
-        console.log(dummy.url_id);
+        //dummy.url_id = urlId;
+        //console.log(dummy.url_id);
         new Post(dummy).save(function (err, newPost) {
             if (err) return console.log(err);
             else console.log(newPost.title + ' saved');
@@ -107,7 +107,7 @@ app.post('/items', function (req, res) {
 });
 
 
-var PORT = process.env.PORT || 2000;
+var PORT = process.env.PORT || 2001;
 
 app.listen(PORT, function () {
     console.log('app is listening on port ' + PORT);
